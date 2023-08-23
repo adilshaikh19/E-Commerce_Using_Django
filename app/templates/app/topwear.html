@@ -1,0 +1,45 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Top Wears{% endblock title %}
+{% block main-content %}
+<div class="container=fluid my-5" style="margin-left: 50px;">
+ <div class="row">
+  <div class="col-sm-3">
+   <div class="list-group">
+    {% url 'topwear' as topwear%}
+    {% url 'topweardata' 'Locomotive' as Locomotive %}
+    {% url 'topweardata' 'Denim' as Denim %}
+    {% url 'topweardata' 'Zara' as Zara %}
+        <a href="{% url 'topwear' %}" class="list-group-item list-group-item-action {% if request.path == topwear %} active {% endif %}" aria-current="true">All TopWear</a>
+        <a href="{% url 'topweardata' 'Locomotive' %}" class="list-group-item list-group-item-action {% if request.path == Locomotive %} active {% endif %}" aria-current="true">Locomotive</a>
+        <a href="{% url 'topweardata' 'Denim' %}" class="list-group-item list-group-item-action {% if request.path == Denim %} active {% endif %}" aria-current="true">Denim</a>
+        <a href="{% url 'topweardata' 'Zara' %}" class="list-group-item list-group-item-action {% if request.path == Zara %} active {% endif %}" aria-current="true">Zara</a>
+        
+    </div><br>
+    <div class="list-group">
+        {% url 'topweardata' 'below' as below %}
+        {% url 'topweardata' 'above' as above %}
+        <a href="{% url 'topweardata' 'below' %}" class="list-group-item list-group-item-action {% if request.path == below %} active {% endif %}" aria-current="true">Below 600</a>
+        <a href="{% url 'topweardata' 'above' %}" class="list-group-item list-group-item-action {% if request.path == above %} active {% endif %}" aria-current="true">Above 600</a>
+    </div>
+  </div>
+  <div class="col-sm-8">
+      <div class="row">
+          {% for product in topwears %}
+          <div class="col-sm-4 text-center mb-4">
+              <a href="{% url 'product-detail' product.id %}" class="btn">
+                  <div class="item">
+                      <img src="{{product.product_image.url}}" alt="" height="300">
+                      <div class="fw-bold">{{product.title}}</div>
+                      <div class="fw-bold">Rs. {{product.discounted_price}}
+                        <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+                      </div>
+                  </div>
+              </a>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+ </div>
+</div>  
+{% endblock main-content %}

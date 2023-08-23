@@ -1,0 +1,48 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Top Wears{% endblock title %}
+{% block main-content %}
+
+<div class="container=fluid my-5" style="margin-left: 50px;">
+ <div class="row">
+  <div class="col-sm-3">
+   <div class="list-group">
+    {% url 'bottomwear' as bottomwear%}
+    {% url 'bottomweardata' 'Spyder' as Spyder %}
+    {% url 'bottomweardata' 'Denim' as Denim %}
+    {% url 'bottomweardata' 'Zara' as Zara %}
+    {% url 'bottomweardata' 'Lee' as Lee %}
+        <a href="{% url 'bottomwear' %}" class="list-group-item list-group-item-action {% if request.path == bottomwear %} active {% endif %}" aria-current="true">All BottomWear</a>
+        <a href="{% url 'bottomweardata' 'Spyder' %}" class="list-group-item list-group-item-action {% if request.path == Spyder %} active {% endif %}" aria-current="true">Spyker</a>
+        <a href="{% url 'bottomweardata' 'Denim' %}" class="list-group-item list-group-item-action {% if request.path == Denim %} active {% endif %}" aria-current="true">Denim</a>
+        <a href="{% url 'bottomweardata' 'Zara' %}" class="list-group-item list-group-item-action {% if request.path == Zara %} active {% endif %}" aria-current="true">Zara</a>
+        <a href="{% url 'bottomweardata' 'Lee' %}" class="list-group-item list-group-item-action {% if request.path == Lee %} active {% endif %}" aria-current="true">Lee Cooper</a>
+        
+    </div><br>
+    <div class="list-group">
+        {% url 'bottomweardata' 'below' as below %}
+        {% url 'bottomweardata' 'above' as above %}
+        <a href="{% url 'bottomweardata' 'below' %}" class="list-group-item list-group-item-action {% if request.path == below %} active {% endif %}" aria-current="true">Below 600</a>
+        <a href="{% url 'bottomweardata' 'above' %}" class="list-group-item list-group-item-action {% if request.path == above %} active {% endif %}" aria-current="true">Above 600</a>
+    </div>
+  </div>
+  <div class="col-sm-8">
+      <div class="row">
+          {% for product in bottomwears %}
+          <div class="col-sm-4 text-center mb-4">
+              <a href="{% url 'product-detail' product.id %}" class="btn">
+                  <div class="item">
+                      <img src="{{product.product_image.url}}" alt="" height="300">
+                      <div class="fw-bold">{{product.title}}</div>
+                      <div class="fw-bold">Rs. {{product.discounted_price}}
+                        <small class="fw-light text-decoration-line-through">{{product.selling_price}}</small>
+                      </div>
+                  </div>
+              </a>
+          </div>
+          {% endfor %}
+      </div>
+  </div>
+ </div>
+</div>  
+{% endblock main-content %}
