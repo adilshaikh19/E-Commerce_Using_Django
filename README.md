@@ -5,13 +5,13 @@
 
 Functionalities available in our Django-based e-commerce project with an advanced admin panel:
 
-1. **User Registration and Authentication:**
-2. **Product Catalog:**
-3. **Search and Filtering:**
-4. **Shopping Cart and Checkout:**
-5. **Order Tracking:**
-6. **Responsive Design:**
-7. **Admin Dashboard:**
-8. **Inventory Management:**
-9. **Content Management System (CMS):**
+1. **User Registration and Authentication**
+2. **Product Catalog**
+3. **Search and Filtering**
+4. **Shopping Cart and Checkout**
+5. **Order Tracking**
+6. **Responsive Design**
+7. **Admin Dashboard**
+8. **Inventory Management**
+9. **Content Management System (CMS)**
     Administrators can create and manage static pages, blog posts, and other content to provide additional information and engage users.
